@@ -7,7 +7,7 @@
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
+window.axios.defaults.baseURL = document.head.querySelector('meta[name="api-base-url"]').content;
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
@@ -22,9 +22,9 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-let userHeader = document.head.querySelector('meta[name="user"]')
-window.user = null
-if (userHeader) if (userHeader.content) window.user = JSON.parse(userHeader.content);
+// let userHeader = document.head.querySelector('meta[name="user"]')
+// window.user = null
+// if (userHeader) if (userHeader.content) window.user = JSON.parse(userHeader.content);
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

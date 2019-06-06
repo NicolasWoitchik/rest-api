@@ -9,23 +9,25 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.eventBus = new Vue()
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('HomeComponent', require('./components/HomeComponent.vue'));
-
 window.Vuetify = require('vuetify');
 import VueRouter from 'vue-router'
+import {store} from '../store/store'
 
 Vue.use(VueRouter)
 Vue.use(Vuetify);
 
-import Home from './components/HomeComponent'
-import Users from './components/Users'
-import App from './components/App'
+import Home from '../views/HomeView'
+import ListUsers from '../views/users/ListView'
+import EditUsers from '../views/users/EditView'
+import App from '../views/App'
 
 const router = new VueRouter({
   mode: 'history',
@@ -38,13 +40,24 @@ const router = new VueRouter({
       {
           path: '/users',
           name: 'users',
-          component: Users,
+          component: ListUsers,
+      },
+      {
+          path: '/users/add',
+          name: 'new-user',
+          component: EditUsers,
+      },
+      {
+          path: '/users/:userID',
+          name: 'edit-user',
+          component: EditUsers,
       },
   ],
 });
 const app = new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   data() {
     return {
