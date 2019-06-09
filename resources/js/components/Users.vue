@@ -83,18 +83,12 @@
         }
       ],
       users:[
-        {
-          'id':1,
-          'name':'Nicolas Woitchik',
-          'email':'nicolas@woitchik.com.br',
-          'phone':'(41) 9 9940 4686'
-        }
       ]
       }
     },
     methods:{
       editUser(user)
-      {
+      { 
         alert(user.id)
       },
       deleteUser(user)

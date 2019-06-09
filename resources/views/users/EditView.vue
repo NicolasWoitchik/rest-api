@@ -43,7 +43,6 @@
           <v-btn
             :disabled="!valid"
             color="success"
-            :loading="saving"
             @click="save"
           >
             Save
@@ -95,17 +94,6 @@
             self.user = user;
           })
           .catch(console.log)
-      }
-    },
-    computed:{
-      saving:{
-        set(){
-          // this.$store.commit('setSaving',true)
-        },
-        get()
-        {
-          return this.$store.getters.saving;
-        }
       }
     },
     methods: {
